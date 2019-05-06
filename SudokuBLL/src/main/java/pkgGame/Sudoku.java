@@ -134,6 +134,17 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 */
 	private void RemoveCells() {
 		// TODO
+		
+		int possibilities = 0;
+		
+		while(IsDifficultyMet(possibilities) == false) {
+			int iRow = (int) Math.random()*iSize;
+			int iCol = (int) Math.random()*iSize;
+			
+			SudokuCell c = new SudokuCell(iRow, iCol);
+			cells.put(0, c);
+			
+		}
 	}
 
 	/**
