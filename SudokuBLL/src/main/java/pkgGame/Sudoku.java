@@ -135,11 +135,11 @@ public class Sudoku extends LatinSquare implements Serializable {
 	private void RemoveCells() {
 		// TODO
 		
-		int difficulty = 0;
+		int possibleValues = 0;
 		
-		while(IsDifficultyMet(difficulty) == false) {
+		while(IsDifficultyMet(possibleValues) == false) {
 			
-			difficulty = 0;
+			possibleValues = 0;
 			
 			int iRow = (int) Math.random()*iSize;
 			int iCol = (int) Math.random()*iSize;
@@ -147,13 +147,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 			SudokuCell c = new SudokuCell(iRow, iCol);
 			cells.put(0, c);
 			
-			for (iRow = 0; iRow < iSize; iRow++) {
-				for (iCol = 0; iCol < iSize; iCol++) {
-					if(super.getLatinSquare()[iRow][iCol] == 0) difficulty += getAllValidCellValues(iCol, iRow).size();
-				}
-			}
-			
-			
+			possibleValues = PossibleValuesMultiplier(cells);
 			
 		}
 	}
@@ -240,9 +234,18 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @return
 	 * @since Lab #5
 	 */
-	private static int PossibleValuesMultiplier(java.util.HashMap<java.lang.Integer,Sudoku.SudokuCell> cells) {
+	private int PossibleValuesMultiplier(java.util.HashMap<java.lang.Integer,Sudoku.SudokuCell> cells) {
 		//TODO
-		return 0;
+		
+		int possibleValues = 1;
+		
+		for (int iRow = 0; iRow < iSize; iRow++) {
+			for (int iCol = 0; iCol < iSize; iCol++) {
+				if(super.getLatinSquare()[iRow][iCol] == 0) possibleValues *= getAllValidCellValues(iCol, iRow).size();
+			}
+		}
+	
+		return possibleValues;
 	}
 
 	private void ShowAvailableValues() {
