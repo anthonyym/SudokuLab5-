@@ -168,6 +168,9 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 */
 	private boolean IsDifficultyMet(int iPossibleValues) {
 		// TODO
+		if(iPossibleValues >= this.eGameDifficulty.getiDifficulty())
+			return true;
+		
 		return false;
 	}
 
