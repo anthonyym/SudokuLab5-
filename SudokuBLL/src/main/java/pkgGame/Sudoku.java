@@ -211,6 +211,13 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 */
 	private void SetRemaingCells() {
 		// TODO
+		for (int iRow = 0; iRow < iSize; iRow++) {
+			for (int iCol = 0; iCol < iSize; iCol++) {
+				SudokuCell c = new SudokuCell(iRow, iCol);
+				c.setlstValidValues(getAllValidCellValues(iCol, iRow));
+				cells.put(c.hashCode(), c);
+			}
+		}
 	}
 
 	/**
