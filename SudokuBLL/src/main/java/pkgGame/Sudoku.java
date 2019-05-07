@@ -234,17 +234,16 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @return
 	 * @since Lab #5
 	 */
-	private int PossibleValuesMultiplier(java.util.HashMap<java.lang.Integer,Sudoku.SudokuCell> cells) {
+	private static int PossibleValuesMultiplier(java.util.HashMap<java.lang.Integer,Sudoku.SudokuCell> cells) {
 		//TODO
 		
 		int possibleValues = 1;
 		
-		for (int iRow = 0; iRow < iSize; iRow++) {
-			for (int iCol = 0; iCol < iSize; iCol++) {
-				if(super.getLatinSquare()[iRow][iCol] == 0) possibleValues *= getAllValidCellValues(iCol, iRow).size();
-			}
+		for (Integer key : cells.keySet()) {
+		    SudokuCell c = cells.get(key);
+		    possibleValues *= c.getLstValidValues().size();
 		}
-	
+		
 		return possibleValues;
 	}
 
